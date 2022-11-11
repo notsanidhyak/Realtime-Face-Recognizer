@@ -3,6 +3,9 @@ import numpy as np
 import face_recognition
 import os
 import glob
+import time
+
+prevtime = 0
 
 images_encoding=[]
 images_names=[]
@@ -49,6 +52,11 @@ while True:
             cv2.putText(frame, "Ye toh "+fname+" hai",(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 200),2)
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 200), 2)
 
+    currtime = time.time()
+    fps = 1/(currtime-prevtime)
+    prevtime = currtime
+    cv2.putText(frame,str(int(fps))+" FPS",(10,20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 200),2)
+    
     cv2.imshow('Realtime Face Detector', frame)
     if cv2.waitKey(1) == ord('x'):
         print("✅ Detection Completed ✅\n")
