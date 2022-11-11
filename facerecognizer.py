@@ -6,6 +6,8 @@ import glob
 
 images_encoding=[]
 images_names=[]
+
+print("\n🔃 Loading Image Database 🔃")
 for i in glob.iglob('imgfolder/*'):
     img = cv2.imread(i)
     rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
